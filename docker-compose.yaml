@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile          # API Dockerfile'ı
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    volumes:
+      - ./chroma_db:/app/chroma_db    # önceden oluşturduğun index
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit   # Streamlit Dockerfile'ı
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000/task/
+    depends_on:
+      - api

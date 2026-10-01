@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Ortam / gizli
+.env
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Docker'ın kendisi
+Dockerfile*
+docker-compose.yml
+.dockerignore
+
+# Büyük / gereksiz
+documents/          # ham PDF'ler — imaja gerek yok (index zaten var)
+*.md
+README*

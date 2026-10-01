@@ -1,17 +1,19 @@
+import uuid
+
 from fastapi import APIRouter
 from models import QueryResponse,QueryRequest
-from rag import build_chain, open_vector_store
+from graph import GaziMindGraph
 
 
 
 router = APIRouter(prefix="/task",tags=["Ask"])
 
 
-vs = open_vector_store()
-chain = build_chain(vs)
+gazi_mind = GaziMindGraph()
 
 
 @router.post("/",response_model=QueryResponse)
 def ask(request: QueryRequest):
-    answer = chain.invoke(request.question)
-    return {"answer":answer}
+    # thread_id yoksa tek seferlik (hafizasiz) sohbet
+    thread_id = request.thread_id or str(uuid.uuid4())
+    return gazi_mind.ask(request.question, thread_id)
