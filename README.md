@@ -1,6 +1,10 @@
-# 🎓 GaziMind
+<p align="center">
+  <img src="images/gazi_logo.png" alt="Gazi Üniversitesi" width="140">
+</p>
 
-Gazi Üniversitesi yönetmelikleri hakkında kaynaklı cevaplar veren, LangGraph tabanlı bir RAG asistanı.
+<h1 align="center">GaziMind</h1>
+
+<p align="center">Gazi Üniversitesi yönetmelikleri hakkında kaynaklı cevaplar veren, LangGraph tabanlı bir RAG asistanı.</p>
 
 ![GaziMind arayüzü](images/main_screen.png)
 
