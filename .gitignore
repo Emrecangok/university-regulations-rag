@@ -18,6 +18,9 @@ chroma_db/
 # Source documents (PDFs)
 documents/
 
+# Conversation memory (LangGraph SQLite checkpointer)
+gazimind.db
+
 # Editor
 .vscode/
 

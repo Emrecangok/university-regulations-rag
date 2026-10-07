@@ -16,7 +16,6 @@ from langchain_core.prompts import ChatPromptTemplate
 
 
 
-from langchain_ollama import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_chroma import Chroma
 
@@ -32,29 +31,21 @@ from langchain_core.runnables import RunnablePassthrough
 
 EXPORT_TYPE = ExportType.DOC_CHUNKS
 
-load_dotenv()  # .env oku (GEMINI_API_KEY, LLM_PROVIDER, OLLAMA_BASE_URL)
+load_dotenv()  # .env oku (GEMINI_API_KEY, GEMINI_MODEL_NAME)
 
-OLLAMA_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")   # "ollama" veya "gemini"
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-flash")
 GEMINI_EMBEDDING_MODEL = os.getenv("GEMINI_EMBEDDING_MODEL", "models/gemini-embedding-001")
 
 
-# --- LLM: saglayici env ile secilir (Ollama = lokal/ucretsiz, Gemini = bulut) ---
-if LLM_PROVIDER == "gemini":
-    llm = ChatGoogleGenerativeAI(
-        model=GEMINI_MODEL,
-        temperature=0,
-        google_api_key=GEMINI_API_KEY,
-    )
-else:
-    llm = ChatOllama(model="qwen2.5:7b", temperature=0, base_url=OLLAMA_URL)
+# --- LLM: Gemini ---
+llm = ChatGoogleGenerativeAI(
+    model=GEMINI_MODEL,
+    temperature=0,
+    google_api_key=GEMINI_API_KEY,
+)
 
-
-# Aktif LLM'in okunabilir adi (cevaptan sonra gostermek icin)
-LLM_ADI = f"Gemini ({GEMINI_MODEL})" if LLM_PROVIDER == "gemini" else "Ollama (qwen2.5:7b)"
-print(f"[LLM] Aktif saglayici: {LLM_ADI}")   # program acilisinda bir kez
+print(f"[LLM] Aktif model: Gemini ({GEMINI_MODEL})")   # program acilisinda bir kez
 
 
 # Embedding Gemini: Chroma bununla index'lendi -> model degisirse re-index gerekir (python rag.py index)

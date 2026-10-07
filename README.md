@@ -25,7 +25,6 @@ Gazi Üniversitesi yönetmelikleri hakkında kaynaklı cevaplar veren, LangGraph
 - **Docling:** PDF'leri parse edip başlık yapısına göre chunk'lama
 - **FastAPI:** backend API
 - **Streamlit:** chat arayüzü
-- **Docker Compose:** API ve arayüzü birlikte ayağa kaldırma
 
 ### Akış Diyagramı
 
@@ -69,7 +68,6 @@ A LangGraph-based RAG assistant that answers questions about Gazi University reg
 - **Docling:** parses PDFs and chunks them by heading structure
 - **FastAPI:** backend API
 - **Streamlit:** chat interface
-- **Docker Compose:** runs the API and UI together
 
 ### Workflow
 
